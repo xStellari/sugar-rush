@@ -4,239 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order — Sugar Rush</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;0,700;1,400&family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Place your Sugar Rush cake-in-a-cup order online. Turon Banoffee ₱199 · Polvoron Delight ₱189 · Halo-Halo Inspired ₱189.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* ── Order page specific ── */
-    .order-section {
-      padding: 5rem 3rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .order-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    /* Left: order form */
-    .order-form-wrap { }
-
-    .order-form-wrap .section-label { margin-bottom: .5rem; }
-    .order-form-wrap h2 {
-      font-family: 'Pacifico', cursive;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      color: var(--pink);
-      text-shadow: 2px 2px 0 var(--brown);
-      line-height: 1.2;
-      margin-bottom: .8rem;
-    }
-    .order-form-wrap > p {
-      font-family: 'Bitter', serif;
-      color: var(--brown-mid);
-      font-size: .95rem;
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: .4rem;
-      margin-bottom: 1.2rem;
-    }
-    .form-group label {
-      font-size: .72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: var(--taupe);
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: var(--cream);
-      border: 2px solid var(--brown);
-      border-radius: 10px;
-      padding: .75rem 1rem;
-      font-size: .95rem;
-      font-family: 'Nunito', sans-serif;
-      color: var(--brown);
-      transition: border-color .2s, box-shadow .2s;
-      outline: none;
-      width: 100%;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--pink);
-      box-shadow: 0 0 0 3px rgba(252,184,213,.3);
-    }
-    .form-group textarea { resize: vertical; min-height: 90px; }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    /* Flavor selector cards */
-    .flavor-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: .8rem;
-      margin-top: .5rem;
-    }
-    .flavor-card {
-      border: 2px solid var(--brown);
-      border-radius: 14px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform .2s, box-shadow .2s, border-color .2s;
-      position: relative;
-    }
-    .flavor-card:hover { transform: translateY(-2px); box-shadow: 3px 3px 0 var(--brown); }
-    .flavor-card.selected {
-      border-color: var(--pink);
-      box-shadow: 0 0 0 3px rgba(252,184,213,.5), 3px 3px 0 var(--brown);
-    }
-    .flavor-card img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
-    .flavor-card-label {
-      padding: .5rem .6rem;
-      font-size: .7rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--brown);
-      background: var(--yellow);
-      border-top: 2px solid var(--brown);
-      text-align: center;
-    }
-    .flavor-card .check {
-      position: absolute;
-      top: 7px; right: 7px;
-      width: 22px; height: 22px;
-      background: var(--pink);
-      border: 2px solid var(--brown);
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-size: .7rem;
-      font-weight: 900;
-      color: var(--brown);
-    }
-    .flavor-card.selected .check { display: flex; }
-
-    .submit-btn {
-      width: 100%;
-      background: var(--pink);
-      color: var(--brown);
-      border: 2.5px solid var(--brown);
-      border-radius: 50px;
-      padding: 1rem;
-      font-size: 1rem;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 4px 4px 0 var(--brown);
-      transition: transform .2s, box-shadow .2s, background .2s;
-      margin-top: .5rem;
-    }
-    .submit-btn:hover {
-      transform: translate(-2px,-2px);
-      box-shadow: 6px 6px 0 var(--brown);
-      background: #ffaacf;
-    }
-
-    /* Right: info sidebar */
-    .order-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
-
-    .info-card {
-      background: var(--yellow);
-      border: 2.5px solid var(--brown);
-      border-radius: 18px;
-      padding: 1.6rem;
-      box-shadow: 4px 4px 0 var(--brown);
-    }
-    .info-card h3 {
-      font-family: 'Pacifico', cursive;
-      font-size: 1.2rem;
-      color: var(--brown);
-      margin-bottom: 1rem;
-    }
-    .info-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
-    .info-list li {
-      font-family: 'Bitter', serif;
-      font-size: .9rem;
-      color: var(--brown-mid);
-      line-height: 1.6;
-      padding-left: .9rem;
-      border-left: 3px solid var(--pink);
-    }
-    .info-list li strong { color: var(--brown); font-style: normal; display: block; font-family: 'Nunito', sans-serif; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .1rem; }
-
-    .social-order-btns { display: flex; flex-direction: column; gap: .7rem; }
-    .social-order-btn {
-      display: flex;
-      align-items: center;
-      gap: .8rem;
-      padding: .85rem 1.2rem;
-      border-radius: 12px;
-      border: 2px solid var(--brown);
-      text-decoration: none;
-      font-weight: 800;
-      font-size: .88rem;
-      color: var(--brown);
-      background: var(--cream);
-      transition: background .2s, transform .2s, box-shadow .2s;
-      box-shadow: 3px 3px 0 var(--brown);
-    }
-    .social-order-btn:hover { background: var(--pink-light); transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--brown); }
-    .social-order-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
-
-    /* Success message */
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 3rem 2rem;
-      background: var(--yellow);
-      border: 2.5px solid var(--brown);
-      border-radius: 20px;
-      box-shadow: 6px 6px 0 var(--brown);
-    }
-    .form-success h3 {
-      font-family: 'Pacifico', cursive;
-      font-size: 1.8rem;
-      color: var(--pink);
-      text-shadow: 2px 2px 0 var(--brown);
-      margin-bottom: .8rem;
-    }
-    .form-success p {
-      font-family: 'Bitter', serif;
-      color: var(--brown-mid);
-      font-size: .95rem;
-      line-height: 1.8;
-    }
-
-    @media (max-width: 900px) {
-      .order-section { padding: 3.5rem 1.5rem; }
-      .order-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .flavor-cards { grid-template-columns: repeat(3,1fr); }
-      .form-row { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .flavor-cards { grid-template-columns: repeat(3,1fr); gap: .5rem; }
-    }
-  </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav id="navbar">
     <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="Sugar Rush"></a>
     <ul class="nav-links">
@@ -256,106 +29,110 @@
     </ul>
   </div>
 
-  <!-- PAGE HERO -->
   <div class="page-hero">
-    <div class="page-hero-inner">
-      <span class="section-label">Place Your Order</span>
-      <h1>Order Now</h1>
-      <p>Fill in the form below and we'll get back to you to confirm your order. You can also reach us directly on Facebook or Instagram.</p>
-    </div>
+    <span class="eyebrow">Place Your Order</span>
+    <h1>Order Now</h1>
+    <p>Fill in the form below and we'll reach out to confirm your order. You can also message us directly on social media.</p>
   </div>
 
-  <!-- MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <span>Turon Banoffee</span><span>Polvoron Delight</span>
-      <span>Halo-Halo Inspired</span><span>Order Today</span>
-      <span>Handcrafted Fresh</span><span>Pick Up Available</span>
-      <span>Turon Banoffee</span><span>Polvoron Delight</span>
-      <span>Halo-Halo Inspired</span><span>Order Today</span>
-      <span>Handcrafted Fresh</span><span>Pick Up Available</span>
+      <span>Turon Banoffee ₱199</span><span class="dot-sep">·</span>
+      <span>Polvoron Delight ₱189</span><span class="dot-sep">·</span>
+      <span>Halo-Halo Inspired ₱189</span><span class="dot-sep">·</span>
+      <span>Handcrafted Fresh</span><span class="dot-sep">·</span>
+      <span>Pickup Available</span><span class="dot-sep">·</span>
+      <span>Turon Banoffee ₱199</span><span class="dot-sep">·</span>
+      <span>Polvoron Delight ₱189</span><span class="dot-sep">·</span>
+      <span>Halo-Halo Inspired ₱189</span><span class="dot-sep">·</span>
+      <span>Handcrafted Fresh</span><span class="dot-sep">·</span>
+      <span>Pickup Available</span><span class="dot-sep">·</span>
     </div>
   </div>
 
-  <!-- ORDER SECTION -->
   <section class="order-section">
     <div class="order-grid">
 
       <!-- FORM -->
       <div class="order-form-wrap reveal">
-        <span class="section-label">Order Form</span>
+        <span class="eyebrow">Order Form</span>
         <h2>Tell Us What You Want</h2>
-        <p>Fill out your details below and we'll confirm your order as soon as possible. Orders are handcrafted fresh so please give us at least 24 hours notice.</p>
+        <p>Orders are handcrafted fresh so please give us at least 24 hours notice. We'll confirm your order as soon as possible.</p>
 
-        <form id="orderForm" novalidate>
+        <form id="orderForm" action="https://formspree.io/f/xykorvlk" method="POST">
 
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name</label>
-              <input type="text" id="firstName" name="firstName" placeholder="e.g. Maria" required>
+              <input type="text" id="firstName" name="First Name" placeholder="Maria" required>
             </div>
             <div class="form-group">
               <label for="lastName">Last Name</label>
-              <input type="text" id="lastName" name="lastName" placeholder="e.g. Santos" required>
+              <input type="text" id="lastName" name="Last Name" placeholder="Santos" required>
             </div>
           </div>
 
           <div class="form-group">
             <label for="contact">Contact Number</label>
-            <input type="tel" id="contact" name="contact" placeholder="e.g. 09XX XXX XXXX" required>
+            <input type="tel" id="contact" name="Contact Number" placeholder="09XX XXX XXXX" required>
           </div>
 
           <div class="form-group">
             <label for="pickup">Preferred Pickup Date</label>
-            <input type="date" id="pickup" name="pickup" required>
+            <input type="date" id="pickup" name="Pickup Date" required>
           </div>
 
           <div class="form-group">
             <label>Select Flavor(s)</label>
             <div class="flavor-cards">
-              <div class="flavor-card" data-flavor="Turon Banoffee">
+              <div class="flavor-card" data-flavor="Turon Banoffee ₱199">
                 <div class="check">✓</div>
                 <img src="images/products/turon_banoffee.jpg" alt="Turon Banoffee">
-                <div class="flavor-card-label">Turon Banoffee</div>
+                <div class="flavor-card-label">Turon Banoffee · ₱199</div>
               </div>
-              <div class="flavor-card" data-flavor="Polvoron Delight">
+              <div class="flavor-card" data-flavor="Polvoron Delight ₱189">
                 <div class="check">✓</div>
                 <img src="images/products/polvoron_delight.jpg" alt="Polvoron Delight">
-                <div class="flavor-card-label">Polvoron Delight</div>
+                <div class="flavor-card-label">Polvoron Delight · ₱189</div>
               </div>
-              <div class="flavor-card" data-flavor="Halo-Halo Inspired">
+              <div class="flavor-card" data-flavor="Halo-Halo Inspired ₱189">
                 <div class="check">✓</div>
                 <img src="images/products/halo_halo_inspired.jpg" alt="Halo-Halo Inspired">
-                <div class="flavor-card-label">Halo-Halo Inspired</div>
+                <div class="flavor-card-label">Halo-Halo Inspired · ₱189</div>
               </div>
             </div>
+            <!-- Hidden input — populated by JS -->
+            <input type="hidden" name="Flavor(s) Selected" id="flavorsInput">
           </div>
 
           <div class="form-group">
             <label for="quantity">Quantity</label>
-            <select id="quantity" name="quantity" required>
+            <select id="quantity" name="Quantity" required>
               <option value="" disabled selected>Select quantity</option>
-              <option value="1">1 cup</option>
-              <option value="2">2 cups</option>
-              <option value="3">3 cups</option>
-              <option value="4">4 cups</option>
-              <option value="5">5 cups</option>
-              <option value="6+">6 or more cups</option>
+              <option value="1 cup">1 cup</option>
+              <option value="2 cups">2 cups</option>
+              <option value="3 cups">3 cups</option>
+              <option value="4 cups">4 cups</option>
+              <option value="5 cups">5 cups</option>
+              <option value="6 or more cups">6 or more cups</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="notes">Special Requests (optional)</label>
-            <textarea id="notes" name="notes" placeholder="Allergies, add-ons, gift messages..."></textarea>
+            <textarea id="notes" name="Special Requests" placeholder="Allergies, add-ons, gift messages..."></textarea>
           </div>
+
+          <!-- Formspree redirect back to same page after submit -->
+          <input type="hidden" name="_next" value="order.html?success=true">
+          <input type="hidden" name="_subject" value="New Sugar Rush Order">
 
           <button type="submit" class="submit-btn">Submit Order</button>
         </form>
 
-        <!-- Success state -->
         <div class="form-success" id="formSuccess">
           <h3>Order Received!</h3>
-          <p>Thank you for ordering from Sugar Rush. We'll reach out to you within 24 hours to confirm your order details. See you soon!</p>
+          <p>Thank you for ordering from Sugar Rush! We'll reach out within 24 hours to confirm your order details. See you soon.</p>
         </div>
       </div>
 
@@ -363,45 +140,38 @@
       <div class="order-sidebar reveal">
 
         <div class="info-card">
+          <h3>Pricing</h3>
+          <ul class="info-list">
+            <li><strong>Turon Banoffee</strong>₱199 per cup</li>
+            <li><strong>Polvoron Delight</strong>₱189 per cup</li>
+            <li><strong>Halo-Halo Inspired</strong>₱189 per cup</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
           <h3>Order Info</h3>
           <ul class="info-list">
-            <li>
-              <strong>Price per cup</strong>
-              ₱89 per cup
-            </li>
-            <li>
-              <strong>Lead Time</strong>
-              At least 24 hours in advance
-            </li>
-            <li>
-              <strong>Pickup</strong>
-              Davao City area — we'll confirm the exact location upon order
-            </li>
-            <li>
-              <strong>Payment</strong>
-              GCash or cash on pickup
-            </li>
-            <li>
-              <strong>Bulk Orders</strong>
-              For 6 or more cups, message us directly on social media
-            </li>
+            <li><strong>Lead Time</strong>At least 24 hours in advance</li>
+            <li><strong>Pickup</strong>Davao City area — exact location confirmed upon order</li>
+            <li><strong>Payment</strong>GCash or cash on pickup</li>
+            <li><strong>Bulk Orders</strong>For 6+ cups, message us directly on social media</li>
           </ul>
         </div>
 
         <div class="info-card">
           <h3>Order via Social</h3>
-          <p style="font-family:'Bitter',serif; font-size:.88rem; color:var(--brown-mid); margin-bottom:1.2rem; line-height:1.7;">Prefer to message us directly? Reach out on any of our platforms and we'll take your order there.</p>
+          <p style="font-family:'Bitter',serif;font-size:.87rem;color:var(--brown-mid);margin-bottom:1rem;line-height:1.7;">Prefer to message us directly? We're on all platforms.</p>
           <div class="social-order-btns">
-            <a href="https://facebook.com/sugarushdvo" target="_blank" class="social-order-btn">
+            <a href="https://facebook.com/sugarrushdvo" target="_blank" class="social-order-btn">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
               Message on Facebook
             </a>
-            <a href="https://instagram.com/sugarushdvo" target="_blank" class="social-order-btn">
+            <a href="https://instagram.com/sugarrushdvo" target="_blank" class="social-order-btn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
               DM on Instagram
             </a>
-            <a href="https://tiktok.com/@sugarushdvo" target="_blank" class="social-order-btn">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.79 1.54V6.79a4.84 4.84 0 01-1.02-.1z"/></svg>
+            <a href="https://tiktok.com/@sugarrushdvo" target="_blank" class="social-order-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.79 1.54V6.79a4.85 4.85 0 01-1.02-.1z"/></svg>
               Message on TikTok
             </a>
           </div>
@@ -410,22 +180,10 @@
         <div class="info-card">
           <h3>What to Expect</h3>
           <ul class="info-list">
-            <li>
-              <strong>Step 1</strong>
-              Submit your order form or message us on social
-            </li>
-            <li>
-              <strong>Step 2</strong>
-              We confirm availability and send payment details
-            </li>
-            <li>
-              <strong>Step 3</strong>
-              We handcraft your cup fresh on your pickup day
-            </li>
-            <li>
-              <strong>Step 4</strong>
-              Pick up and enjoy your sweet little rush
-            </li>
+            <li><strong>Step 1</strong>Submit your order or message us on social</li>
+            <li><strong>Step 2</strong>We confirm availability and send payment details</li>
+            <li><strong>Step 3</strong>We handcraft your cup fresh on pickup day</li>
+            <li><strong>Step 4</strong>Pick up and enjoy your sweet little rush</li>
           </ul>
         </div>
 
@@ -433,10 +191,10 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-logo"><img src="images/logo.png" alt="Sugar Rush"></div>
-    <p class="footer-tag">Your Sweet Little Rush in a Cup</p>
+    <div class="footer-logo-wrap"><img src="images/logo.png" alt="Sugar Rush"></div>
+    <span class="footer-brand">Sugar Rush</span>
+    <span class="footer-tagline">Your Sweet Little Rush in a Cup</span>
     <ul class="footer-nav">
       <li><a href="menu.html">Menu</a></li>
       <li><a href="promos.html">Promos</a></li>
@@ -444,33 +202,27 @@
       <li><a href="order.html">Order</a></li>
     </ul>
     <div class="footer-socials">
-      <a href="https://facebook.com/sugarushdvo" target="_blank" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-      <a href="https://instagram.com/sugarushdvo" target="_blank" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-      <a href="https://tiktok.com/@sugarushdvo" target="_blank" class="social-btn" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.79 1.54V6.79a4.84 4.84 0 01-1.02-.1z"/></svg></a>
+      <a href="https://facebook.com/sugarrushdvo" target="_blank" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="https://instagram.com/sugarrushdvo" target="_blank" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://tiktok.com/@sugarrushdvo" target="_blank" class="social-btn" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.79 1.54V6.79a4.85 4.85 0 01-1.02-.1z"/></svg></a>
     </div>
-    <p class="footer-copy">© 2026 Sugar Rush &middot; @sugarushdvo &middot; All rights reserved</p>
+    <p class="footer-copy">© 2026 Sugar Rush · All rights reserved · Davao City, Philippines</p>
   </footer>
 
   <script src="script.js"></script>
   <script>
-    // Flavor card toggle
-    document.querySelectorAll('.flavor-card').forEach(card => {
-      card.addEventListener('click', () => card.classList.toggle('selected'));
+    // Populate hidden flavors input before submit
+    document.getElementById('orderForm').addEventListener('submit', function() {
+      const selected = [...document.querySelectorAll('.flavor-card.selected')]
+        .map(c => c.dataset.flavor).join(', ') || 'None selected';
+      document.getElementById('flavorsInput').value = selected;
     });
 
-    // Set minimum date to tomorrow
-    const pickupInput = document.getElementById('pickup');
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    pickupInput.min = tomorrow.toISOString().split('T')[0];
-
-    // Form submit
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      this.style.display = 'none';
+    // Show success message if redirected back with ?success=true
+    if (new URLSearchParams(location.search).get('success') === 'true') {
+      document.getElementById('orderForm').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
-      window.scrollTo({ top: document.getElementById('formSuccess').offsetTop - 100, behavior: 'smooth' });
-    });
+    }
   </script>
 </body>
 </html>

@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery — Sugar Rush</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;0,700;1,400&family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="A peek inside the Sugar Rush world — from our cake station to your hands.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- NAV -->
   <nav id="navbar">
     <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="Sugar Rush"></a>
     <ul class="nav-links">
@@ -31,131 +29,122 @@
     </ul>
   </div>
 
-  <!-- PAGE HERO -->
   <div class="page-hero">
-    <div class="page-hero-inner">
-      <span class="section-label">Behind the Cup</span>
-      <h1>Gallery</h1>
-      <p>A peek inside the Sugar Rush world — from our cake station to your hands. Click any photo to view it in full.</p>
-    </div>
+    <span class="eyebrow">Behind the Cup</span>
+    <h1>Gallery</h1>
+    <p>A peek inside the Sugar Rush world — from our cake station to your hands. Tap any photo to view it in full.</p>
   </div>
 
-  <!-- MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <span>Cake in a Cup</span><span>Turon Banoffee</span>
-      <span>Polvoron Delight</span><span>Halo-Halo Inspired</span>
-      <span>Cake Station</span><span>Handcrafted</span>
-      <span>Cake in a Cup</span><span>Turon Banoffee</span>
-      <span>Polvoron Delight</span><span>Halo-Halo Inspired</span>
-      <span>Cake Station</span><span>Handcrafted</span>
+      <span>Cake in a Cup</span><span class="dot-sep">·</span>
+      <span>Turon Banoffee</span><span class="dot-sep">·</span>
+      <span>Polvoron Delight</span><span class="dot-sep">·</span>
+      <span>Halo-Halo Inspired</span><span class="dot-sep">·</span>
+      <span>Cake Station</span><span class="dot-sep">·</span>
+      <span>Handcrafted</span><span class="dot-sep">·</span>
+      <span>Cake in a Cup</span><span class="dot-sep">·</span>
+      <span>Turon Banoffee</span><span class="dot-sep">·</span>
+      <span>Polvoron Delight</span><span class="dot-sep">·</span>
+      <span>Halo-Halo Inspired</span><span class="dot-sep">·</span>
+      <span>Cake Station</span><span class="dot-sep">·</span>
+      <span>Handcrafted</span><span class="dot-sep">·</span>
     </div>
   </div>
 
-  <!-- GALLERY -->
   <section class="gallery-page">
-    <div class="gallery-page-inner">
+    <div class="gallery-filter">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="cups">Cake in a Cup</button>
+      <button class="filter-btn" data-filter="station">Cake Station</button>
+    </div>
 
-      <div class="gallery-filter">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="cups">Cake in a Cup</button>
-        <button class="filter-btn" data-filter="station">Cake Station</button>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/products/halo_halo_inspired.jpg" alt="Halo-Halo Inspired">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Halo-Halo Inspired</span></div>
       </div>
-
-      <div class="gallery-grid">
-
-        <!-- Cups -->
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/products/halo_halo_inspired.jpg" alt="Halo-Halo Inspired">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Halo-Halo Inspired</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/products/turon_banoffee.jpg" alt="Turon Banoffee">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Turon Banoffee</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/products/polvoron_delight.jpg" alt="Polvoron Delight">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Polvoron Delight</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/gallery/cup1.jpg" alt="Cup Variants">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Cup Variants</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/gallery/cup2.jpg" alt="Fresh Cups">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Fresh Cups</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/gallery/cup3.jpg" alt="All Flavors">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">All Flavors</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/gallery/cup4.jpg" alt="Cup Display">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Cup Display</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/products/turon_2.jpg" alt="Turon Banoffee Detail">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Turon Banoffee</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/products/polvoron_2.jpg" alt="Polvoron Detail">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Polvoron Delight</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/products/halo_2.jpg" alt="Halo-Halo Detail">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Halo-Halo Inspired</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/products/turon_3.jpg" alt="Turon Banoffee Close">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Turon Banoffee</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="cups">
-          <img src="images/products/halo_3.jpg" alt="Halo-Halo Close">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Halo-Halo Inspired</span></div>
-        </div>
-
-        <!-- Station -->
-        <div class="gallery-item reveal" data-cat="station">
-          <img src="images/gallery/station1.jpg" alt="Cake Station Setup">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Cake Station</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="station">
-          <img src="images/gallery/station2.jpg" alt="Cake Station Ingredients">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Fresh Ingredients</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="station">
-          <img src="images/gallery/station3.jpg" alt="Cake Station Event">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Station Event</span></div>
-        </div>
-        <div class="gallery-item reveal" data-cat="station">
-          <img src="images/gallery/station4.jpg" alt="Cake Station Closeup">
-          <div class="gallery-overlay"><span class="gallery-overlay-text">Made Fresh</span></div>
-        </div>
-
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/products/turon_banoffee.jpg" alt="Turon Banoffee">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Turon Banoffee</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/products/polvoron_delight.jpg" alt="Polvoron Delight">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Polvoron Delight</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/gallery/cup1.jpg" alt="Cup Variants">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Cup Variants</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/gallery/cup2.jpg" alt="Fresh Cups">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Fresh Cups</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/gallery/cup3.jpg" alt="All Flavors">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">All Flavors</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/gallery/cup4.jpg" alt="Cup Display">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Cup Display</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/products/turon_2.jpg" alt="Turon Banoffee">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Turon Banoffee</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/products/polvoron_2.jpg" alt="Polvoron Delight">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Polvoron Delight</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/products/halo_2.jpg" alt="Halo-Halo Inspired">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Halo-Halo Inspired</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/products/turon_3.jpg" alt="Turon Banoffee">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Turon Banoffee</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="cups">
+        <img src="images/products/halo_3.jpg" alt="Halo-Halo Inspired">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Halo-Halo Inspired</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="station">
+        <img src="images/gallery/station1.jpg" alt="Cake Station">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Cake Station</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="station">
+        <img src="images/gallery/station2.jpg" alt="Fresh Ingredients">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Fresh Ingredients</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="station">
+        <img src="images/gallery/station3.jpg" alt="Station Event">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Station Event</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="station">
+        <img src="images/gallery/station4.jpg" alt="Made Fresh">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Made Fresh</span></div>
       </div>
     </div>
   </section>
 
-  <!-- LIGHTBOX -->
   <div id="lightbox">
     <button id="lb-close" aria-label="Close">✕</button>
-    <img id="lbImg" src="" alt="Expanded photo">
+    <img id="lbImg" src="" alt="Full size photo">
   </div>
 
-  <!-- CTA -->
   <section class="cta-block">
     <h2>Tag Us on Social</h2>
-    <p>Share your Sugar Rush moment and tag us @sugarushdvo. We love seeing your cups!</p>
+    <p>Share your Sugar Rush moment and tag us @sugarrushdvo.</p>
     <div class="cta-btns">
-      <a href="https://instagram.com/sugarushdvo" target="_blank" class="btn btn-cream">Instagram</a>
-      <a href="https://facebook.com/sugarushdvo" target="_blank" class="btn btn-cream">Facebook</a>
+      <a href="https://instagram.com/sugarrushdvo" target="_blank" class="btn btn-pink">Instagram</a>
+      <a href="https://facebook.com/sugarrushdvo" target="_blank" class="btn btn-white">Facebook</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-logo"><img src="images/logo.png" alt="Sugar Rush"></div>
-    <p class="footer-tag">Your Sweet Little Rush in a Cup</p>
+    <div class="footer-logo-wrap"><img src="images/logo.png" alt="Sugar Rush"></div>
+    <span class="footer-brand">Sugar Rush</span>
+    <span class="footer-tagline">Your Sweet Little Rush in a Cup</span>
     <ul class="footer-nav">
       <li><a href="menu.html">Menu</a></li>
       <li><a href="promos.html">Promos</a></li>
@@ -163,11 +152,11 @@
       <li><a href="order.html">Order</a></li>
     </ul>
     <div class="footer-socials">
-      <a href="https://facebook.com/sugarushdvo" target="_blank" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-      <a href="https://instagram.com/sugarushdvo" target="_blank" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-      <a href="https://tiktok.com/@sugarushdvo" target="_blank" class="social-btn" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.79 1.54V6.79a4.84 4.84 0 01-1.02-.1z"/></svg></a>
+      <a href="https://facebook.com/sugarrushdvo" target="_blank" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="https://instagram.com/sugarrushdvo" target="_blank" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://tiktok.com/@sugarrushdvo" target="_blank" class="social-btn" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.79 1.54V6.79a4.85 4.85 0 01-1.02-.1z"/></svg></a>
     </div>
-    <p class="footer-copy">© 2026 Sugar Rush &middot; @sugarushdvo &middot; All rights reserved</p>
+    <p class="footer-copy">© 2026 Sugar Rush · All rights reserved · Davao City, Philippines</p>
   </footer>
 
   <script src="script.js"></script>

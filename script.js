@@ -1,15 +1,15 @@
 /* =============================================
-   SUGAR RUSH — script.js (v4)
+   SUGAR RUSH — script.js (v6)
 ============================================= */
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── Nav scroll shadow ─────────────────── */
+  /* ── Nav scroll shadow ───────────────────── */
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar?.classList.toggle('scrolled', window.scrollY > 10);
   }, { passive: true });
 
-  /* ── Active nav link by page ───────────── */
+  /* ── Active nav link by current page ─────── */
   const page = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a, .footer-nav a, .mobile-drawer a').forEach(a => {
     const href = (a.getAttribute('href') || '').split('/').pop();
@@ -18,13 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ── Mobile burger ─────────────────────── */
+  /* ── Mobile burger ───────────────────────── */
   const burger = document.getElementById('navBurger');
   const drawer = document.getElementById('mobileDrawer');
+
   burger?.addEventListener('click', () => {
-    const open = drawer.classList.toggle('open');
-    burger.textContent = open ? '✕' : '☰';
+    const isOpen = drawer.classList.toggle('open');
+    burger.textContent = isOpen ? '✕' : '☰';
   });
+
+  // Close drawer when a link is tapped
   drawer?.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       drawer.classList.remove('open');
@@ -32,19 +35,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── Scroll reveal ─────────────────────── */
+  // Close drawer when clicking outside
+  document.addEventListener('click', e => {
+    if (drawer?.classList.contains('open') &&
+        !drawer.contains(e.target) &&
+        !burger.contains(e.target)) {
+      drawer.classList.remove('open');
+      burger.textContent = '☰';
+    }
+  });
+
+  /* ── Scroll reveal ───────────────────────── */
   const ro = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const sibs = [...entry.target.parentElement.children].filter(el => el.classList.contains('reveal'));
-      const idx  = sibs.indexOf(entry.target);
-      setTimeout(() => entry.target.classList.add('visible'), idx * 80);
+      // Stagger siblings that are all .reveal inside the same parent
+      const sibs = [...entry.target.parentElement.children]
+        .filter(el => el.classList.contains('reveal'));
+      const idx = sibs.indexOf(entry.target);
+      setTimeout(() => entry.target.classList.add('visible'), idx * 90);
       ro.unobserve(entry.target);
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
+
   document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-  /* ── Hero slideshow — 2.2s interval ────── */
+  /* ── Hero slideshow — 2.2 s ──────────────── */
   const heroPanel = document.querySelector('.hero-slideshow-panel');
   if (heroPanel) {
     const slides = heroPanel.querySelectorAll('.hero-slide');
@@ -58,25 +74,25 @@ document.addEventListener('DOMContentLoaded', () => {
       slides[cur].classList.add('active');
       dots[cur]?.classList.add('active');
     }
-    function heroStart() { timer = setInterval(() => heroGo(cur + 1), 2200); }
-    function heroStop()  { clearInterval(timer); }
+    function start() { timer = setInterval(() => heroGo(cur + 1), 2200); }
+    function stop()  { clearInterval(timer); }
 
-    dots.forEach(d => d.addEventListener('click', () => { heroStop(); heroGo(+d.dataset.idx); heroStart(); }));
-    heroPanel.addEventListener('mouseenter', heroStop);
-    heroPanel.addEventListener('mouseleave', heroStart);
+    dots.forEach(d => d.addEventListener('click', () => { stop(); heroGo(+d.dataset.idx); start(); }));
+    heroPanel.addEventListener('mouseenter', stop);
+    heroPanel.addEventListener('mouseleave', start);
 
-    // Swipe
-    let tx = 0;
-    heroPanel.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-    heroPanel.addEventListener('touchend',   e => {
-      const dx = e.changedTouches[0].clientX - tx;
-      if (Math.abs(dx) > 40) { heroStop(); heroGo(cur + (dx < 0 ? 1 : -1)); heroStart(); }
+    // Touch swipe
+    let touchX = 0;
+    heroPanel.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    heroPanel.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) { stop(); heroGo(cur + (dx < 0 ? 1 : -1)); start(); }
     }, { passive: true });
 
-    heroStart();
+    start();
   }
 
-  /* ── Product thumbnail switcher ────────── */
+  /* ── Product thumbnail switcher ──────────── */
   document.querySelectorAll('.product-images').forEach(block => {
     const mainImg = block.querySelector('.product-main-img img');
     const thumbs  = block.querySelectorAll('.thumb');
@@ -90,9 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── Gallery filter ────────────────────── */
+  /* ── Gallery filter ──────────────────────── */
   const filterBtns   = document.querySelectorAll('.filter-btn');
   const galleryItems = document.querySelectorAll('.gallery-item');
+
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
@@ -104,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── Lightbox ───────────────────────────── */
+  /* ── Gallery lightbox ────────────────────── */
   const lb      = document.getElementById('lightbox');
   const lbImg   = document.getElementById('lbImg');
   const lbClose = document.getElementById('lb-close');
@@ -117,17 +134,21 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = 'hidden';
     });
   });
-  function closeLb() { lb?.classList.remove('open'); document.body.style.overflow = ''; }
+
+  function closeLb() {
+    lb?.classList.remove('open');
+    document.body.style.overflow = '';
+  }
   lbClose?.addEventListener('click', closeLb);
   lb?.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
-  /* ── Order: flavor toggle ───────────────── */
+  /* ── Flavor card toggle (order page) ─────── */
   document.querySelectorAll('.flavor-card').forEach(card => {
     card.addEventListener('click', () => card.classList.toggle('selected'));
   });
 
-  /* ── Order: min date tomorrow ───────────── */
+  /* ── Pickup date: min = tomorrow ─────────── */
   const pickupInput = document.getElementById('pickup');
   if (pickupInput) {
     const tomorrow = new Date();
@@ -135,13 +156,14 @@ document.addEventListener('DOMContentLoaded', () => {
     pickupInput.min = tomorrow.toISOString().split('T')[0];
   }
 
-  /* ── Order: form submit ─────────────────── */
-  document.getElementById('orderForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    this.style.display = 'none';
+  /* ── Order form: show success if redirected back ── */
+  if (new URLSearchParams(location.search).get('success') === 'true') {
+    const form    = document.getElementById('orderForm');
     const success = document.getElementById('formSuccess');
-    success.style.display = 'block';
-    window.scrollTo({ top: success.offsetTop - 100, behavior: 'smooth' });
-  });
+    if (form && success) {
+      form.style.display    = 'none';
+      success.style.display = 'block';
+    }
+  }
 
 });
