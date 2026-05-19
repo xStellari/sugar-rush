@@ -16,6 +16,7 @@
       <li><a href="menu.html">Menu</a></li>
       <li><a href="promos.html">Promos</a></li>
       <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="order.html" class="nav-cta">Order Now</a></li>
     </ul>
     <button class="nav-burger" id="navBurger">☰</button>
@@ -25,6 +26,7 @@
       <li><a href="menu.html">Menu</a></li>
       <li><a href="promos.html">Promos</a></li>
       <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="order.html">Order Now</a></li>
     </ul>
   </div>
@@ -119,15 +121,42 @@
           </div>
 
           <div class="form-group">
-            <label for="notes">Special Requests (optional)</label>
-            <textarea id="notes" name="Special Requests" placeholder="Allergies, add-ons, gift messages..."></textarea>
+            <label>Add-ons <span style="font-weight:600;color:var(--taupe);text-transform:none;letter-spacing:0;font-size:.75rem;">(additional charges apply — we'll confirm pricing)</span></label>
+            <div class="addons-grid" id="addonsGrid">
+              <label class="addon-item">
+                <input type="checkbox" name="Add-ons" value="Extra Icing +₱20">
+                <span class="addon-label">Extra Icing <span class="addon-price">+₱20</span></span>
+              </label>
+              <label class="addon-item">
+                <input type="checkbox" name="Add-ons" value="Extra Toppings +₱20">
+                <span class="addon-label">Extra Toppings <span class="addon-price">+₱20</span></span>
+              </label>
+              <label class="addon-item">
+                <input type="checkbox" name="Add-ons" value="Leche Flan Cubes +₱30">
+                <span class="addon-label">Leche Flan Cubes <span class="addon-price">+₱30</span></span>
+              </label>
+              <label class="addon-item">
+                <input type="checkbox" name="Add-ons" value="Ube Pillows +₱25">
+                <span class="addon-label">Ube Pillows <span class="addon-price">+₱25</span></span>
+              </label>
+              <label class="addon-item">
+                <input type="checkbox" name="Add-ons" value="Extra Barquillos +₱20">
+                <span class="addon-label">Extra Barquillos <span class="addon-price">+₱20</span></span>
+              </label>
+              <label class="addon-item">
+                <input type="checkbox" name="Add-ons" value="Gift Packaging +₱30">
+                <span class="addon-label">Gift Packaging <span class="addon-price">+₱30</span></span>
+              </label>
+            </div>
           </div>
 
-          <!-- Formspree redirect back to same page after submit -->
-          <input type="hidden" name="_next" value="order.html?success=true">
-          <input type="hidden" name="_subject" value="New Sugar Rush Order">
+          <div class="form-group">
+            <label for="notes">Special Requests (optional)</label>
+            <textarea id="notes" name="Special Requests" placeholder="Allergies, gift messages, delivery notes..."></textarea>
+          </div>
 
-          <button type="submit" class="submit-btn">Submit Order</button>
+          <input type="hidden" name="_subject" value="New Sugar Rush Order — @sugarrushdvo">
+          <button type="submit" class="submit-btn" id="submitBtn">Submit Order</button>
         </form>
 
         <div class="form-success" id="formSuccess">
@@ -145,6 +174,7 @@
             <li><strong>Turon Banoffee</strong>₱199 per cup</li>
             <li><strong>Polvoron Delight</strong>₱189 per cup</li>
             <li><strong>Halo-Halo Inspired</strong>₱189 per cup</li>
+            <li><strong>Add-ons</strong>Selected add-ons are priced separately — we'll confirm the total when we reach out to confirm your order</li>
           </ul>
         </div>
 
@@ -192,13 +222,13 @@
   </section>
 
   <footer>
-    <div class="footer-logo-wrap"><img src="images/logo.png" alt="Sugar Rush"></div>
-    <span class="footer-brand">Sugar Rush</span>
+    <div class="footer-logo-wrap footer-logo-dark"><img src="images/logo.png" alt="Sugar Rush"></div>
     <span class="footer-tagline">Your Sweet Little Rush in a Cup</span>
     <ul class="footer-nav">
       <li><a href="menu.html">Menu</a></li>
       <li><a href="promos.html">Promos</a></li>
       <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="order.html">Order</a></li>
     </ul>
     <div class="footer-socials">
@@ -212,17 +242,49 @@
   <script src="script.js"></script>
   <script>
     // Populate hidden flavors input before submit
-    document.getElementById('orderForm').addEventListener('submit', function() {
-      const selected = [...document.querySelectorAll('.flavor-card.selected')]
-        .map(c => c.dataset.flavor).join(', ') || 'None selected';
-      document.getElementById('flavorsInput').value = selected;
-    });
+    const form    = document.getElementById('orderForm');
+    const btn     = document.getElementById('submitBtn');
+    const success = document.getElementById('formSuccess');
 
-    // Show success message if redirected back with ?success=true
-    if (new URLSearchParams(location.search).get('success') === 'true') {
-      document.getElementById('orderForm').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    }
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Collect selected flavors
+      const flavors = [...document.querySelectorAll('.flavor-card.selected')]
+        .map(c => c.dataset.flavor).join(', ') || 'None selected';
+      document.getElementById('flavorsInput').value = flavors;
+
+      // Format pickup date to readable format e.g. "May 20, 2026"
+      const rawDate = document.getElementById('pickup').value;
+      if (rawDate) {
+        const d = new Date(rawDate + 'T00:00:00');
+        const formatted = d.toLocaleDateString('en-PH', { year: 'numeric', month: 'long', day: 'numeric' });
+        document.getElementById('pickup').value = formatted;
+      }
+
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error('Form error');
+        }
+      } catch {
+        btn.textContent = 'Submit Order';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or message us directly on Facebook or Instagram.');
+      }
+    });
   </script>
 </body>
 </html>

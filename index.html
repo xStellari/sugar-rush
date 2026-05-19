@@ -10,13 +10,13 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav id="navbar">
     <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="Sugar Rush"></a>
     <ul class="nav-links">
       <li><a href="menu.html">Menu</a></li>
       <li><a href="promos.html">Promos</a></li>
       <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="order.html" class="nav-cta">Order Now</a></li>
     </ul>
     <button class="nav-burger" id="navBurger">☰</button>
@@ -26,14 +26,15 @@
       <li><a href="menu.html">Menu</a></li>
       <li><a href="promos.html">Promos</a></li>
       <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="order.html">Order Now</a></li>
     </ul>
   </div>
 
-  <!-- HERO -->
+  <!-- HERO — full viewport, image first on mobile -->
   <section class="hero">
 
-    <!-- Right: slideshow — first in DOM so image appears first on mobile -->
+    <!-- Image panel — first in DOM so it shows first on mobile -->
     <div class="hero-slideshow-panel">
       <div class="hero-slide active">
         <img src="images/products/halo_halo_inspired.jpg" alt="Halo-Halo Inspired">
@@ -47,18 +48,23 @@
         <img src="images/products/polvoron_delight.jpg" alt="Polvoron Delight">
         <div class="hero-slide-caption"><span>Polvoron Delight — ₱189</span></div>
       </div>
+      <div class="hero-slide">
+        <img src="images/product_poster.png" alt="Sugar Rush Cake in a Cup Series" style="object-fit: contain; background: #fce4ee;">
+        <div class="hero-slide-caption"><span>Cake in a Cup Series — Starting at ₱189</span></div>
+      </div>
       <div class="hero-slide-dots slide-dots">
         <button class="dot active" data-idx="0"></button>
         <button class="dot" data-idx="1"></button>
         <button class="dot" data-idx="2"></button>
+        <button class="dot" data-idx="3"></button>
       </div>
     </div>
 
-    <!-- Left: text — pushed below image on mobile via CSS order -->
+    <!-- Text panel -->
     <div class="hero-text-panel">
       <span class="eyebrow">Filipino Desserts, Elevated</span>
       <h1 class="hero-title">Your Sweet<br>Little <span>Rush</span><br>in a Cup</h1>
-      <p class="hero-sub">Classic Filipino flavors transformed into modern, portable cake-in-a-cup creations — handcrafted fresh, made for on-the-go dessert lovers.</p>
+      <p class="hero-sub">Classic Filipino flavors transformed into modern, portable cake-in-a-cup creations — handcrafted fresh for on-the-go dessert lovers in Davao City.</p>
       <div class="hero-btns">
         <a href="menu.html" class="btn btn-dark">See the Menu</a>
         <a href="order.html" class="btn btn-outline">Order Now</a>
@@ -87,106 +93,14 @@
     </div>
   </div>
 
-  <!-- PROMOS STRIP -->
-  <section class="promo-strip">
-    <div class="promo-strip-inner">
-      <div class="strip-header reveal">
-        <div class="strip-header-left">
-          <span class="eyebrow">Latest Offers</span>
-          <h2>Promos & Events</h2>
-        </div>
-        <a href="promos.html" class="strip-view-all">View All</a>
-      </div>
-      <div class="promo-cards reveal">
-        <a href="promos.html" class="promo-card">
-          <img src="images/promos/rush_hour.png" alt="Sugar Rush Hour">
-          <div class="promo-card-label">Sugar Rush Hour</div>
-        </a>
-        <a href="promos.html" class="promo-card">
-          <img src="images/promos/cake_bouquet.png" alt="Cake Bouquet">
-          <div class="promo-card-label">Cake Bouquet</div>
-        </a>
-        <a href="promos.html" class="promo-card">
-          <img src="images/promos/cupids.png" alt="Cup-id's Sweet Treat">
-          <div class="promo-card-label">Cup-id's Sweet Treat</div>
-        </a>
-        <a href="promos.html" class="promo-card">
-          <img src="images/promos/fill_your_cup.png" alt="Fill Your Own Cup">
-          <div class="promo-card-label">Fill Your Own Cup</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT TEASER -->
-  <div class="about-teaser">
-    <div class="about-teaser-img reveal">
-      <img src="images/gallery/station1.jpg" alt="Sugar Rush Cake Station">
-    </div>
-    <div class="about-teaser-text reveal">
-      <span class="eyebrow">About Sugar Rush</span>
-      <h2>A Sweet Idea Born<br>from <span>Craving</span></h2>
-      <div class="rule"></div>
-      <p>Sugar Rush transforms classic Filipino flavors into modern, portable cake-in-a-cup creations. We saw a gap in the market — repetitive dessert options, limited innovation, and a lack of convenience.</p>
-      <p>Every cup is layered with love, handcrafted fresh, and designed to give you that perfect sweet rush wherever you are.</p>
-      <div class="stat-row">
-        <div class="stat-item">
-          <strong>98%</strong>
-          <small>of people love cake</small>
-        </div>
-        <div class="stat-item">
-          <strong>3+</strong>
-          <small>Signature Flavors</small>
-        </div>
-        <div class="stat-item">
-          <strong>100%</strong>
-          <small>Fresh Ingredients</small>
-        </div>
-      </div>
-      <a href="menu.html" class="btn btn-dark">Explore the Menu</a>
-    </div>
-  </div>
-
-  <!-- REVIEWS -->
-  <section class="reviews-section">
-    <div class="reviews-section-header reveal">
-      <span class="eyebrow">What Customers Say</span>
-      <h2>Sweet Words from<br>Sweeter People</h2>
-    </div>
-    <div class="reviews-ticker">
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The Turon Banoffee is everything! Creamy, layered, and so uniquely Filipino. I order every week."</p><div class="reviewer">@trisha.eats <span class="reviewer-tag">· Repeat Customer</span></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Brought Sugar Rush to our study group and everyone was obsessed. Gone in minutes!"</p><div class="reviewer">@marvs.snacks <span class="reviewer-tag">· Group Order</span></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The packaging is cute, the layers are generous, and the taste is chef's kiss. My new go-to."</p><div class="reviewer">@bea.delights <span class="reviewer-tag">· First-Time Customer</span></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Halo-Halo Inspired had me feeling like a kid again. A must-try for every Filipino dessert lover!"</p><div class="reviewer">@jules.eats <span class="reviewer-tag">· Repeat Customer</span></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The Cake Bouquet was such a hit for my bestie's birthday. 10/10 would order again."</p><div class="reviewer">@camille.sweets <span class="reviewer-tag">· Gift Order</span></div></div>
-      <!-- duplicate for loop -->
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The Turon Banoffee is everything! Creamy, layered, and so uniquely Filipino. I order every week."</p><div class="reviewer">@trisha.eats <span class="reviewer-tag">· Repeat Customer</span></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Brought Sugar Rush to our study group and everyone was obsessed. Gone in minutes!"</p><div class="reviewer">@marvs.snacks <span class="reviewer-tag">· Group Order</span></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The packaging is cute, the layers are generous, and the taste is chef's kiss. My new go-to."</p><div class="reviewer">@bea.delights <span class="reviewer-tag">· First-Time Customer</span></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Halo-Halo Inspired had me feeling like a kid again. A must-try for every Filipino dessert lover!"</p><div class="reviewer">@jules.eats <span class="reviewer-tag">· Repeat Customer</span></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The Cake Bouquet was such a hit for my bestie's birthday. 10/10 would order again."</p><div class="reviewer">@camille.sweets <span class="reviewer-tag">· Gift Order</span></div></div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-block">
-    <h2>Ready for Your Rush?</h2>
-    <p>Life's too short for boring desserts. Treat yourself and your barkada to something truly special.</p>
-    <div class="cta-btns">
-      <a href="menu.html" class="btn btn-white">Browse Menu</a>
-      <a href="order.html" class="btn btn-pink">Order Now</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-logo-wrap"><img src="images/logo.png" alt="Sugar Rush"></div>
-    <span class="footer-brand">Sugar Rush</span>
+    <div class="footer-logo-wrap footer-logo-dark"><img src="images/logo.png" alt="Sugar Rush"></div>
     <span class="footer-tagline">Your Sweet Little Rush in a Cup</span>
     <ul class="footer-nav">
       <li><a href="menu.html">Menu</a></li>
       <li><a href="promos.html">Promos</a></li>
       <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="order.html">Order</a></li>
     </ul>
     <div class="footer-socials">

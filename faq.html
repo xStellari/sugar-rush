@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Sugar Rush</title>
+  <meta name="description" content="Frequently asked questions about Sugar Rush — ordering, pricing, pickup, add-ons, and more.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── FAQ page specific ── */
+    .faq-page {
+      padding: 3rem var(--page-pad) 5rem;
+    }
+
+    .faq-intro {
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+    .faq-intro h1 {
+      font-family: 'Genty', cursive;
+      font-size: clamp(2rem, 8vw, 4rem);
+      color: var(--brown);
+      line-height: 1.1;
+      margin-bottom: .7rem;
+      animation: slideUp .7s ease both;
+    }
+    .faq-intro p {
+      font-family: 'Bitter', serif;
+      color: var(--brown-mid);
+      font-size: .95rem;
+      line-height: 1.8;
+      animation: slideUp .8s .08s ease both;
+    }
+
+    /* Category label */
+    .faq-category {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin: 2.5rem 0 1rem;
+      display: block;
+      padding-bottom: .7rem;
+      border-bottom: 1.5px solid var(--pink-light);
+    }
+    .faq-category:first-of-type { margin-top: 0; }
+
+    /* Accordion */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      max-width: 720px;
+    }
+
+    .faq-item {
+      border: 1.5px solid var(--pink-light);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--cream);
+      transition: border-color .2s;
+    }
+    .faq-item.open {
+      border-color: var(--pink-vivid);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 1.3rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: .95rem;
+      color: var(--brown);
+      transition: color .2s;
+    }
+    .faq-item.open .faq-question { color: var(--pink-vivid); }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid currentColor;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      font-weight: 900;
+      transition: transform .3s var(--ease), background .2s, color .2s;
+      color: var(--taupe);
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--pink-vivid);
+      border-color: var(--pink-vivid);
+      color: var(--cream);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s var(--ease);
+    }
+    .faq-answer-inner {
+      padding: 0 1.3rem 1.3rem;
+      font-family: 'Bitter', serif;
+      font-size: .92rem;
+      color: var(--brown-mid);
+      line-height: 1.85;
+      border-top: 1.5px solid var(--pink-light);
+      padding-top: 1rem;
+    }
+    .faq-answer-inner a {
+      color: var(--pink-vivid);
+      font-weight: 700;
+      border-bottom: 1.5px solid currentColor;
+      padding-bottom: 1px;
+      transition: color .2s;
+    }
+    .faq-answer-inner a:hover { color: var(--brown); }
+
+    /* Still have questions CTA */
+    .faq-contact {
+      margin-top: 3.5rem;
+      max-width: 720px;
+      padding: 2rem 1.6rem;
+      border: 1.5px solid var(--pink-light);
+      border-radius: 14px;
+      background: var(--cream-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-contact h3 {
+      font-family: 'Genty', cursive;
+      font-size: 1.4rem;
+      color: var(--brown);
+    }
+    .faq-contact p {
+      font-family: 'Bitter', serif;
+      font-size: .92rem;
+      color: var(--brown-mid);
+      line-height: 1.8;
+    }
+    .faq-contact-btns {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+
+    @media (min-width: 960px) {
+      .faq-page { padding: 3rem 3rem 6rem; max-width: 1160px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="Sugar Rush"></a>
+    <ul class="nav-links">
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="promos.html">Promos</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="order.html" class="nav-cta">Order Now</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger">☰</button>
+  </nav>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <ul>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="promos.html">Promos</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="order.html">Order Now</a></li>
+    </ul>
+  </div>
+
+  <div class="page-hero">
+    <span class="eyebrow">Got Questions?</span>
+    <h1>FAQ</h1>
+    <p>Everything you need to know about Sugar Rush — ordering, pickup, pricing, and more.</p>
+  </div>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Cake in a Cup</span><span class="dot-sep">·</span>
+      <span>Turon Banoffee ₱199</span><span class="dot-sep">·</span>
+      <span>Polvoron Delight ₱189</span><span class="dot-sep">·</span>
+      <span>Halo-Halo Inspired ₱189</span><span class="dot-sep">·</span>
+      <span>Handcrafted Fresh</span><span class="dot-sep">·</span>
+      <span>@sugarrushdvo</span><span class="dot-sep">·</span>
+      <span>Cake in a Cup</span><span class="dot-sep">·</span>
+      <span>Turon Banoffee ₱199</span><span class="dot-sep">·</span>
+      <span>Polvoron Delight ₱189</span><span class="dot-sep">·</span>
+      <span>Halo-Halo Inspired ₱189</span><span class="dot-sep">·</span>
+      <span>Handcrafted Fresh</span><span class="dot-sep">·</span>
+      <span>@sugarrushdvo</span><span class="dot-sep">·</span>
+    </div>
+  </div>
+
+  <section class="faq-page">
+
+    <!-- ORDERING -->
+    <span class="faq-category">Ordering</span>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          How do I place an order?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            You can place an order through our <a href="order.html">order form</a> on this website, or message us directly on <a href="https://facebook.com/sugarrushdvo" target="_blank">Facebook</a> or <a href="https://instagram.com/sugarrushdvo" target="_blank">Instagram</a>. We'll get back to you to confirm your order and send payment details.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          How far in advance do I need to order?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            We require at least <strong>24 hours notice</strong> for all orders since every cup is handcrafted fresh to order. For bulk orders of 6 or more cups, we recommend ordering 2–3 days in advance to make sure we can accommodate you.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Can I order in bulk or for events?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Yes! We accept bulk orders for parties, team events, debuts, and other celebrations. For orders of 6 or more cups, please message us directly on social media so we can discuss availability and arrange everything properly. We also offer a <a href="cake-station.html">Cake Station</a> rental service for events — packages coming soon.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Can I customize my order?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Yes, you can add add-ons to your order such as extra icing, extra toppings, leche flan cubes, ube pillows, extra barquillos, and gift packaging. You can select these in the <a href="order.html">order form</a>. For special requests like allergies or gift messages, there's a notes field in the form as well.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PRICING & PAYMENT -->
+    <span class="faq-category">Pricing & Payment</span>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          How much do the cups cost?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Our current prices are:<br><br>
+            Turon Banoffee — <strong>₱199</strong><br>
+            Polvoron Delight — <strong>₱189</strong><br>
+            Halo-Halo Inspired — <strong>₱189</strong><br><br>
+            Add-ons are priced separately and will be confirmed when we reach out to confirm your order.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          What payment methods do you accept?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            We currently accept <strong>GCash</strong> and <strong>cash on pickup</strong>. Payment details will be sent when we confirm your order.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Do I need to pay a deposit?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            For standard orders, full payment is made upon pickup. For bulk orders or special arrangements, we may require a deposit to confirm your booking — we'll let you know when we confirm your order.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PICKUP & DELIVERY -->
+    <span class="faq-category">Pickup & Delivery</span>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Where do I pick up my order?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            We're based in <strong>Davao City</strong>. The exact pickup location will be confirmed when we reach out after you place your order.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Do you offer delivery?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Delivery is not available at the moment — orders are pickup only. We're working on making this available in the future. Follow us on social media to stay updated.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          How long do the cups last?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            The cups are best enjoyed <strong>immediately</strong> after pickup for the best texture and flavor. Toppings may soften over time. If storing, keep them refrigerated and consume within the same day.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PRODUCTS -->
+    <span class="faq-category">Products</span>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          What flavors are available?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            We currently have three flavors in our Cake in a Cup series: <strong>Turon Banoffee</strong>, <strong>Polvoron Delight</strong>, and <strong>Halo-Halo Inspired</strong>. Visit our <a href="menu.html">menu page</a> for the full ingredient breakdown of each flavor.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Are there any allergens I should know about?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Our products contain <strong>dairy, gluten, and eggs</strong>. Some flavors also contain nuts. If you have specific allergies, please let us know in the Special Requests field when ordering and we'll do our best to accommodate you.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Will you be adding new flavors?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Yes! We're always experimenting with new Filipino-inspired flavors. Follow us on <a href="https://instagram.com/sugarrushdvo" target="_blank">Instagram</a> and <a href="https://facebook.com/sugarrushdvo" target="_blank">Facebook</a> to be the first to know when new flavors drop.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CAKE STATION -->
+    <span class="faq-category">Cake Station</span>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          What is the Cake Station?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            The Sugar Rush Cake Station is an interactive dessert rental service for events. We set up a fully styled station where your guests can build their own cake-in-a-cup from scratch — choosing their cake base, icing, toppings, and syrup. Learn more on our <a href="cake-station.html">Cake Station page</a>.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          How do I book the Cake Station?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Cake Station packages are still being finalized. In the meantime, you can express your interest by messaging us on <a href="https://facebook.com/sugarrushdvo" target="_blank">Facebook</a> or <a href="https://instagram.com/sugarrushdvo" target="_blank">Instagram</a>, or drop your email on the <a href="cake-station.html">Cake Station page</a> to be notified when bookings open.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STILL HAVE QUESTIONS -->
+    <div class="faq-contact reveal">
+      <h3>Still have questions?</h3>
+      <p>Can't find what you're looking for? Reach out to us directly on social media and we'll get back to you as soon as we can.</p>
+      <div class="faq-contact-btns">
+        <a href="https://facebook.com/sugarrushdvo" target="_blank" class="btn btn-dark">Message on Facebook</a>
+        <a href="https://instagram.com/sugarrushdvo" target="_blank" class="btn btn-outline">DM on Instagram</a>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer-logo-wrap footer-logo-dark"><img src="images/logo.png" alt="Sugar Rush"></div>
+    <span class="footer-tagline">Your Sweet Little Rush in a Cup</span>
+    <ul class="footer-nav">
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="promos.html">Promos</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="order.html">Order</a></li>
+    </ul>
+    <div class="footer-socials">
+      <a href="https://facebook.com/sugarrushdvo" target="_blank" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="https://instagram.com/sugarrushdvo" target="_blank" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://tiktok.com/@sugarrushdvo" target="_blank" class="social-btn" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.79 1.54V6.79a4.85 4.85 0 01-1.02-.1z"/></svg></a>
+    </div>
+    <p class="footer-copy">© 2026 Sugar Rush · All rights reserved · Davao City, Philippines</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item   = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        // Close all open items
+        document.querySelectorAll('.faq-item.open').forEach(open => {
+          open.classList.remove('open');
+          open.querySelector('.faq-answer').style.maxHeight = '0';
+          open.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        // Open clicked item if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

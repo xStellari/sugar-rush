@@ -167,3 +167,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+  /* ── Add-on checkbox visual toggle ─────── */
+  document.querySelectorAll('.addon-item').forEach(item => {
+    const cb = item.querySelector('input[type="checkbox"]');
+    cb?.addEventListener('change', () => {
+      item.classList.toggle('selected', cb.checked);
+    });
+  });
